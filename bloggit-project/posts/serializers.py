@@ -24,7 +24,7 @@ class PostSerializer(serializers.ModelSerializer):
     def get_score(self, post):
         upvotes = UpVote.objects.filter(post=post).count()
         dnvotes = DownVote.objects.filter(post=post).count()
-        return str(upvotes-dnvotes)#Vote.objects.filter(post=post).count()
+        return str(upvotes-dnvotes)
 
 
 class UpVoteSerializer(serializers.ModelSerializer):

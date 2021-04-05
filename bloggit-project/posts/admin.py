@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Vote, UpVote, DownVote
+from .models import Post, UpVote, DownVote
 
 
 # Register your models here.

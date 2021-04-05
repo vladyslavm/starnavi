@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from rest_framework import generics, permissions, mixins, status
 from .models import Post, UpVote, DownVote
-from .serializers import PostSerializer, VoteSerializer, UpVoteSerializer, DownVoteSerializer
+from .serializers import PostSerializer, UpVoteSerializer, DownVoteSerializer
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
