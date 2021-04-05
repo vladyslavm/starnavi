@@ -12,11 +12,6 @@ class Post(models.Model):
         ordering = ['-created']
 
 
-class Vote(models.Model):
-    voter = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-
-
 
 class UpVote(models.Model):
     voter = models.ForeignKey(User, on_delete=models.CASCADE)

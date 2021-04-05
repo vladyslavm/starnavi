@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from rest_framework import generics, permissions, mixins, status
-from .models import Post, Vote, UpVote, DownVote
+from .models import Post, UpVote, DownVote
 from .serializers import PostSerializer, VoteSerializer, UpVoteSerializer, DownVoteSerializer
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
@@ -49,34 +49,6 @@ class PostRetrieveDestroy(generics.RetrieveDestroyAPIView):
         else:
             raise ValidationError('This is not your post')
 
-
-
-class VoteCreate(generics.CreateAPIView, mixins.DestroyModelMixin):
-    
-    serializer_class = VoteSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get_queryset(self):
-        user = self.request.user
-
-        post = Post.objects.get(pk=self.kwargs['pk'])
-
-        return Vote.objects.filter(voter=user, post=post)
-
-
-    def perform_create(self, serializer):
-        if self.get_queryset().exists():
-            raise ValidationError('You have already voted')
-        serializer.save(voter=self.request.user, post=Post.objects.get(pk=self.kwargs['pk']))
-
-
-    def delete(self, request, *args, **kwargs):
-        if self.get_queryset().exists():
-            self.get_queryset().delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-
-        else:
-            raise ValidationError('No votes here')
 
 
 class UpVoteCreate(generics.CreateAPIView, mixins.DestroyModelMixin):

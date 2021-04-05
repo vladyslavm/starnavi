@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Post, Vote, UpVote, DownVote
+from .models import Post, UpVote, DownVote
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -25,16 +25,6 @@ class PostSerializer(serializers.ModelSerializer):
         upvotes = UpVote.objects.filter(post=post).count()
         dnvotes = DownVote.objects.filter(post=post).count()
         return str(upvotes-dnvotes)#Vote.objects.filter(post=post).count()
-
-
-
-    
-
-class VoteSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Vote
-        fields = ['id']
 
 
 class UpVoteSerializer(serializers.ModelSerializer):
