@@ -29,13 +29,17 @@ class PostSerializer(serializers.ModelSerializer):
 
 class UpVoteSerializer(serializers.ModelSerializer):
 
+    #created = serializers.DateTimeField()
+
     class Meta:
         model = UpVote
-        fields = ['id']
+        fields = ['id', 'created']
 
 
 class DownVoteSerializer(serializers.ModelSerializer):
 
+    created = serializers.DateTimeField()
+
     class Meta:
         model = DownVote
-        fields = ['id']
+        fields = ['id', 'created']

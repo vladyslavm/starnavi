@@ -24,6 +24,9 @@ urlpatterns = [
     path('api/posts/<int:pk>/upvote', views.UpVoteCreate.as_view()),
     path('api/posts/<int:pk>/dnvote', views.DownVoteCreate.as_view()),
     path('api-auth/', include('rest_framework.urls')),
+    
+    path('api/analytics/', views.analytics),
 
     path('api/signup', views.signup),
+
 ]
